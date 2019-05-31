@@ -1,0 +1,57 @@
+<pre>
+8/18/03 Tan & Carney (JASA 2003) AN3 model 
+also available from the <a href='http://earlab.bu.edu'>EarLab</a> website,
+a digital warehouse for auditory models and data.
+
+NOTE: This code was used to generate the figures in 
+"A Phenomenological Model for the Responses of Auditory-
+Nerve Fibers. II. Nonlinear Tuning with a Frequency Glide."
+Qing Tan and Laurel H. Carney, JASA 2003 114:2007-2020.
+
+{Internally, we refer to this as "AN3" -> Carney, 1993 is
+"AN1" and Zhang et al., 2001 is "AN2".}
+
+
+How to compile the files:
+
+(1) Uncompress all the files into the same directory 
+
+(2) Open Matlab and go to that directory 
+
+(3) Type the following command in Matlab:
+	mex anmod3m.c
+
+How to run it:
+
+(1) Use the following Matlab command format:
+
+sout=anmod3m(cf, inputsound);
+
+where inputsound is a vector containing the stimulus waveform,
+and sout is the returned synapse output, with same length as 
+the inputsound vector.
+    The units of inputsound MUST be in Pascals (because this 
+is a nonlinear model, it is critical that the signal is provided
+in the proper units.)
+    The units of the synapse output are in "spikes/sec" (for each 
+20 usec bin) - to generate spikes, you can use this signal to 
+drive a non-homogenous Poisson Process (see Zhang et al., JASA, 
+2001, for example). The Sout signal itself can be compared to 
+the PST histogram of an AN fiber (note however that refractoriness 
+is not included in this response.)
+
+(2) The program was written using a 50kHz sampling rate.
+Therefore, "inputsound" should be created using a 50 kHz sampling 
+rate. You can change the sampling rate by changing
+the value of tdres in anmod3m.h. However, other sampling rates 
+have not been tested and may generate unexpected results.
+
+(3) There are 2 simple test m-files in this directory:
+AN3_test_tone.m and AN3_test_click.m  run the model for a 1 kHz CF 
+fiber and plot out tone and click responses at several SPLs.
+
+Thanks for your interest in this model.
+
+Good luck!
+	
+</pre>
